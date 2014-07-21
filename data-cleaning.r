@@ -22,4 +22,4 @@ data.subset=data[!idcs.NA,]
 # save the subset of remaining observations in a file named
 # "ling-data-clean.data" 
 
-save(data.subset,file="ling-data-clean.data")
+write.table(data.subset, file="ling-data-clean.data", row.names=F)

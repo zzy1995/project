@@ -18,11 +18,13 @@ makeBinary <- function(response.row, n.responses) {
 	if(length(response.row)!=length(n.responses)) stop('unesumqual lengths')
 	x=rep(0,sum(n.responses))
 	for(i in 1:length(response.row)){
-		if(i==1){
-			x[response.row[i]]=1
-		} else{
-			x[sum(n.responses[1:(i-1)])+response.row[i]]=1
-			}
+		if(response.row[i]!=0){
+			if(i==1){
+				x[response.row[i]]=1
+			} else{
+				x[sum(n.responses[1:(i-1)])+response.row[i]]=1
+				}
+		}
 	}
 	return(x)
 }
@@ -41,5 +43,12 @@ tryCatch(checkEquals(make.binary.test2, makeBinary(make.binary.rr2,
 # indicated in project1.pdf**. Save this dataframe as the file
 # "binary-ling-data.data".
     
+data.subset=read.table("ling-data-clean.data",header=TRUE)
+data.num=data.subset[,5:71]
+n.responses=apply(data.subset[,5:71],2,max)
+data.bin=t(apply(data.num,1,makeBinary,n.responses=n.responses))
+col.names=unlist(sapply(1:length(n.responses),function(x) paste(rep(names(n.responses)[x],n.responses[x]),1:n.responses[x],sep='.')))
+colnames(data.bin)=col.names
+final=data.frame(data.subset[,c(1,2,3,4,72,73)],data.bin)
 
-
+tryCatch(checkEquals(head.binary.data,final[1:10,]),error=function(err) errMsg(err))
