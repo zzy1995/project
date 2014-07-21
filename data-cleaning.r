@@ -6,7 +6,7 @@ data=read.table('lingdata.txt',header=TRUE)
 idcs.NA=apply(data,1,anyNA)
 # n.no.response <- your code here
 n.no.response=sum(idcs.NA)
-data.subset=data[idcs.NA,]
+data.subset=data[!idcs.NA,]
 
 # plot a histogram of the number of omitted responses for each observation
 # after removing observations that omitted all questions
