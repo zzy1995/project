@@ -52,3 +52,5 @@ colnames(data.bin)=col.names
 final=data.frame(data.subset[,c(1,2,3,4,72,73)],data.bin)
 
 tryCatch(checkEquals(head.binary.data,final[1:10,]),error=function(err) errMsg(err))
+
+write.table(final, file="binary-ling-data.data", row.names=F)
