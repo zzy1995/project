@@ -51,6 +51,8 @@ col.names=unlist(sapply(1:length(n.responses),function(x) paste(rep(names(n.resp
 colnames(data.bin)=col.names
 final=data.frame(data.subset[,c(1,2,3,4,72,73)],data.bin)
 
-tryCatch(checkEquals(head.binary.data,final[1:10,]),error=function(err) errMsg(err))
-
 write.table(final, file="binary-ling-data.data", row.names=F)
+
+final.data=read.table('binary-ling-data.data',header=TRUE)
+
+tryCatch(checkEquals(head.binary.data,final.data[1:10,]),error=function(err) errMsg(err))
