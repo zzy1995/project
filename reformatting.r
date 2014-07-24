@@ -50,8 +50,10 @@ data.bin=t(apply(data.num,1,makeBinary,n.responses=n.responses))
 col.names=unlist(sapply(1:length(n.responses),function(x) paste(rep(names(n.responses)[x],n.responses[x]),1:n.responses[x],sep='.')))
 colnames(data.bin)=col.names
 final=data.frame(data.subset[,c(1,2,3,4,72,73)],data.bin)
+rownames(final) <- as.character(1:nrow(final))
 
-write.table(final, file="binary-ling-data.data", row.names=F)
+
+write.table(final, file="binary-ling-data.data")
 
 final.data=read.table('binary-ling-data.data',header=TRUE)
 

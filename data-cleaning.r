@@ -11,7 +11,7 @@ data.subset=data[!idcs.nr,]
 # plot a histogram of the number of omitted responses for each observation
 # after removing observations that omitted all questions
 
-n.omitted=apply(data.subset==0,1,function(x) sum(x,na.rm=TRUE))
+n.omitted=apply(data.subset[,5:71]==0,1,function(x) sum(x,na.rm=TRUE))
 hist(n.omitted,main="Number Omitted Questions",xlab="questions omitted")
 
 # using your subset (with observations that responded to no questions
