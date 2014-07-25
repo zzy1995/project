@@ -15,18 +15,26 @@ load('reformatting-tests.rda')
 
 makeBinary <- function(response.row, n.responses) {
 
-	if(length(response.row)!=length(n.responses)) stop('unesumqual lengths')
-	x=rep(0,sum(n.responses))
-	for(i in 1:length(response.row)){
-		if(response.row[i]!=0){
-			if(i==1){
-				x[response.row[i]]=1
-			} else{
-				x[sum(n.responses[1:(i-1)])+response.row[i]]=1
-				}
-		}
-	}
-	return(x)
+#	if(length(response.row)!=length(n.responses)) stop('unesumqual lengths')
+#	x=rep(0,sum(n.responses))
+#	for(i in 1:length(response.row)){
+#		if(response.row[i]!=0){
+#			if(i==1){
+#				x[response.row[i]]=1
+#			} else{
+#				x[sum(n.responses[1:(i-1)])+response.row[i]]=1
+#				}
+#		}
+#	}
+#	return(x)
+	
+	
+	make.list=lapply(1:length(n.responses),function(i) {
+	make.new=rep(0,n.responses[i])
+	make.new[response.row[i]]=1
+	return(make.new)
+	})
+	return(unlist(make.list))
 }
 
 
