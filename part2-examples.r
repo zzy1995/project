@@ -48,3 +48,4 @@ points(sample$coords, col=colors[sample$kmeans$cluster], pch=20, cex=.75)
 
 
 
+
