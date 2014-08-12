@@ -79,6 +79,9 @@ map('state', col='black', fill=F)
 points(sample$coords, col=colors[sample$kmeans$cluster], pch=20, cex=.75)
 }
 
+sapply(c(2,3,4,5,8),function(i) plot.map(2000,i))
+
+
 ## Map after PCA
 
 plot.map.pca <- function(samp.size,k){
@@ -93,3 +96,5 @@ colors <-  add.alpha(colors, alpha=0.5)
 map('state', col='black', fill=F)
 points(sample$coords, col=colors[sample$kmeans$cluster], pch=20, cex=.75)
 }
+
+sapply(c(2,3,4,5,8),function(i) plot.map.pca(2000,i))

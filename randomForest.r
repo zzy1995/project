@@ -20,3 +20,7 @@ diff <- function(size){
 	return(list(diff.lat=mean(abs(pred.rf.lat-test.lat[,1])),diff.long=mean(abs(pred.rf.long-test.long[,2]))))
 }
 
+result=replicate(100,diff(1000))
+par(mfrow=c(1,2))
+hist(unlist(result[1,]),main='latitude')
+hist(unlist(result[2,]),main='longitude')
